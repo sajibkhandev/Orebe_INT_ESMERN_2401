@@ -1,9 +1,12 @@
 import React from 'react'
+import Navber from '../layouts/Navber'
+import Siderber from '../layouts/Siderber'
 
 const Home = () => {
   return (
     <div>
-      <h1>this is home page</h1>
+      <Navber/>
+      <Siderber/>
     </div>
   )
 }
