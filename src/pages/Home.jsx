@@ -10,21 +10,56 @@ import ProductImage2 from '../assets/product2.png'
 import Pomotion from '../assets/pomotion.png'
 import Image from '../components/Image'
 
+import "slick-carousel/slick/slick.css";
+import Slider from "react-slick";
+import NextArrow from '../components/NextArrow'
+import PrevArrow from '../components/PrevArrow'
+
 
 const Home = () => {
+   var settings = {
+    arrows:true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+   
+    nextArrow:<NextArrow/>,
+    prevArrow:<PrevArrow/>
+  };
   return (
     <div>
       <Banner/>
       <Offer/>
       <Container>
          <Heading text="New Arrivals" className='pb-12' />
+         <Slider {...settings}>
+        <div>
+           <Product src={ProductImage} title="Product one" price="30"/>
+        </div>
+        <div>
+           <Product src={ProductImage2} title="Product one" price="30"/>
+        </div>
+        <div>
+           <Product src={ProductImage} title="Product one" price="30"/>
+        </div>
+        <div>
+           <Product src={ProductImage2} title="Product one" price="30"/>
+        </div>
+        <div>
+           <Product src={ProductImage} title="Product one" price="30"/>
+        </div>
+       
+        <div>
+           <Product src={ProductImage2} title="Product one" price="30"/>
+        </div>
+       
+        
+        
+      
+    </Slider>
 
-        <Flex className='justify-between   pb-[118px]'>
-              <Product src={ProductImage} title="Product one" price="30"/>
-              <Product src={ProductImage2} title="Product two" price="20"/>
-              <Product src={ProductImage} title="Product three" price="50"/>
-              <Product src={ProductImage2} title="Product four" price="100"/>
-        </Flex>
+      
 
         <Heading text="Our Bestsellers" className='pb-12' />
         <Flex className='justify-between   pb-[118px]'>
