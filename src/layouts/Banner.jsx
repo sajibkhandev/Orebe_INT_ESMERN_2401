@@ -10,13 +10,13 @@ import BannerIcon2 from '../assets/bannerIcon2.png'
 import BannerIcon3 from '../assets/bannerIcon3.png'
 
 import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 
 const Banner = () => {
    var settings = {
     autoplay: true,
+    arrows:false,
     speed: 2000,
     autoplaySpeed: 2000,
     infinite: true,
