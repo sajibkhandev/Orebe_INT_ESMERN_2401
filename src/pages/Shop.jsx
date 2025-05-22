@@ -1,25 +1,25 @@
-import React, { useRef} from 'react'
+import React, { useState } from 'react'
 import Container from '../components/Container'
+import { useDispatch, useSelector } from 'react-redux'
+import { increment } from '../slices/counterSlice'
+
+
 const Shop = () => {
+  let dispatch=useDispatch()
+  let data=useSelector((state)=>state.name.value)
+ 
 
-   let showRef=useRef(null)
+  let handleIncrement=()=>{
+    dispatch(increment(10))
+    
 
-   let handleClick=()=>{
-    if(showRef.current.style.display=="block"){
-       showRef.current.style.display="none"
-    }else{
-      showRef.current.style.display="block"
-    }
-   }
+  }
   return (
     <Container>
-      <button onClick={handleClick} className='bg-red-500 py-3 px-5'>Open</button>
-      <ul ref={showRef} className='hidden'>
-        <li>home</li>
-        <li>about</li>
-        <li>contact</li>
-        <li>service</li>
-      </ul>
+      <button onClick={handleIncrement}>Increment</button>
+      <h1>Counter {data}</h1>
+    
+     
     </Container>
   )
 }

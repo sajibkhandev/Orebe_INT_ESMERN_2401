@@ -5,8 +5,18 @@ import Image from '../components/Image'
 import Product2 from '../assets/product2.png'
 import Product1 from '../assets/product.png'
 import AboutBlog from '../components/AboutBlog'
+import { useDispatch, useSelector } from 'react-redux'
+import { increment } from '../slices/counterSlice'
 
 const About = () => {
+  let dispatch=useDispatch()
+  let data=useSelector((state)=>state.name.value)
+
+  let handleAdd=()=>{
+    dispatch(increment(10))
+  }
+
+
   return (
    <section>
     <Container>
@@ -20,6 +30,9 @@ const About = () => {
         <button className='bg-black py-7 px-[97px] text-white text-base font-dm font-normal absolute bottom-10 left-1/2 -translate-x-1/2'>Our Stores</button>
       </div>
       </Flex>
+
+       <button onClick={handleAdd}>ADD</button>
+       <h1>Counter {data}</h1>
       <p className='text-[39px] text-secondary font-dm font-normal'>Orebi is one of the world’s leading ecommerce brands and is internationally recognized for celebrating the essence of classic Worldwide cool looking style.</p>
 
       <Flex className='justify-between pt-[118px] pb-[131px]'>
