@@ -5,12 +5,15 @@ import Image from '../components/Image'
 import Product2 from '../assets/product2.png'
 import Product1 from '../assets/product.png'
 import AboutBlog from '../components/AboutBlog'
+import Heading from '../components/Heading'
 import { useDispatch, useSelector } from 'react-redux'
 import { increment } from '../slices/counterSlice'
+import { Link } from 'react-router-dom'
 
 const About = () => {
   let dispatch=useDispatch()
-  let data=useSelector((state)=>state.name.value)
+  
+    let data=useSelector((state)=>state.breadcrumb.preavalue)
 
   let handleAdd=()=>{
     dispatch(increment(10))
@@ -18,8 +21,12 @@ const About = () => {
 
 
   return (
-   <section>
+   <section className='py-[128px] '>
     <Container>
+       <Heading text="About" className='text-[49px]'/>
+       <p> <Link to={data=="Home"?"/" :`/${data}`}>{data}</Link> >  About</p>
+
+
       <Flex className='justify-between pt-[135px] pb-[128px]'>
       <div className='w-[48%] relative'>
         <Image className='w-full' src={Product2}/>

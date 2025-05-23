@@ -1,13 +1,19 @@
 import React from 'react'
 import Container from '../components/Container'
 import Button from '../components/Button'
+import Heading from '../components/Heading'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 
 const Contact = () => {
+  let data=useSelector((state)=>state.breadcrumb.preavalue)
   return (
     <section className='py-[140px]'>
        <Container>
-          <h4 className='text-[39px] text-secondary font-dm font-bold pb-[42px]'>Fill up a Form</h4>
+         <Heading text="Contacts" className='text-[49px]'/>
+         <p> <Link to={data=="Home"? "/" :`/${data}`}>{data}</Link> >  contact</p>
+          <h4 className='text-[39px] text-secondary font-dm font-bold pb-[42px] pt-[136px]'>Fill up a Form</h4>
           <label className='text-base text-secondary font-dm font-bold' htmlFor=""> Name: <br />
             <input className='border-b border-[#F0F0F0] mb-6 w-[48%] py-3' type="text" placeholder='Your name here'/>
           </label> <br />
