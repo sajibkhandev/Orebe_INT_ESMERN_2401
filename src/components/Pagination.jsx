@@ -5,6 +5,8 @@ import Product from '../components/Product'
 import data from '../data';
 
 
+
+
 function Items({ currentItems }) {
   return (
     <>
@@ -37,7 +39,9 @@ function Pagination({ itemsPerPage }) {
   return (
     <>
       <Items currentItems={currentItems} />
-      <ReactPaginate
+    <div className='flex items-center justify-between'>
+       <div className='mt-[50px]'>
+       <ReactPaginate
         breakLabel="-----"
         nextLabel=""
         onPageChange={handlePageClick}
@@ -45,7 +49,12 @@ function Pagination({ itemsPerPage }) {
         pageCount={pageCount}
         previousLabel=""
         renderOnZeroPageCount={null}
+        containerClassName="flex "
+        pageLinkClassName="py-3 px-5 bg-black text-white mr-5"
       />
+     </div>
+     <h1 className='pt-4 text-primary text-sm font-dm font-normal'>Products from {itemOffset+1} to {endOffset<data.length ? endOffset:data.length} of {data.length}</h1>
+    </div>
     </>
   );
 }
