@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import ReactPaginate from 'react-paginate';
-import Product from '../components/Product'
-import data from '../data';
+import Product from './Product'
+import axios from 'axios';
 
 
-
-
+  
 function Items({ currentItems }) {
   return (
     <>
@@ -14,7 +13,7 @@ function Items({ currentItems }) {
                 {currentItems &&
                 currentItems.map((item) => (
                 <div>
-                    <Product src={item.image} title={item.title} price={item.price}/>
+                    <Product src={item.thumbnail} title={item.title} price={item.price}/>
                 </div>
                 ))}
       </div>
@@ -23,13 +22,33 @@ function Items({ currentItems }) {
 }
 
 function Pagination({ itemsPerPage }) {
+
+
+// new code here
+
+  let [alldata,setAlldata]=useState([])
+
+useEffect(()=>{
+ async function alldata(){
+    let data=await axios.get("https://dummyjson.com/products")
+    setAlldata(data.data.products)
+
+  }
+  alldata()
+
+},[])  
+// new code here
+
+
+
+
   const [itemOffset, setItemOffset] = useState(0);
   const endOffset = itemOffset + itemsPerPage;
   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  const currentItems = data.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(data.length / itemsPerPage);
+  const currentItems = alldata.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(alldata.length / itemsPerPage);
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % data.length;
+    const newOffset = (event.selected * itemsPerPage) % alldata.length;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     );
@@ -53,10 +72,16 @@ function Pagination({ itemsPerPage }) {
         pageLinkClassName="py-3 px-5 bg-black text-white mr-5"
       />
      </div>
-     <h1 className='pt-4 text-primary text-sm font-dm font-normal'>Products from {itemOffset+1} to {endOffset<data.length ? endOffset:data.length} of {data.length}</h1>
+     <h1 className='pt-4 text-primary text-sm font-dm font-normal'>Products from {itemOffset+1} to {endOffset<alldata.length ? endOffset:alldata.length} of {alldata.length}</h1>
     </div>
     </>
   );
 }
+
+
+
+
+
+
 
 export default Pagination

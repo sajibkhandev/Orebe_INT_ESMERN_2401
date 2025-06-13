@@ -21,7 +21,6 @@ const Category = ({text,type,className}) => {
   return (
      <Flex className={`items-center justify-between py-5 border-b border-[#e1e1e1] ${className}`}>
                 <p>{text}</p>
-
                 {
                   type=="true"
                   ?
@@ -32,7 +31,6 @@ const Category = ({text,type,className}) => {
                   <FiPlus onClick={hanldePlus}/>
                   :
                   ""
-                 
                 }
                 
                

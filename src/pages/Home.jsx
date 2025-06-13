@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Banner from '../layouts/Banner'
 import Offer from '../layouts/Offer'
 import Heading from '../components/Heading'
@@ -14,9 +14,13 @@ import "slick-carousel/slick/slick.css";
 import Slider from "react-slick";
 import NextArrow from '../components/NextArrow'
 import PrevArrow from '../components/PrevArrow'
+import axios from 'axios'
 
 
 const Home = () => {
+
+   let [allData,setAllData]=useState([])
+
    var settings = {
     arrows:true,
     infinite: true,
@@ -27,6 +31,21 @@ const Home = () => {
     nextArrow:<NextArrow/>,
     prevArrow:<PrevArrow/>
   };
+
+
+  useEffect(()=>{
+
+   async function alldata(){
+      let data=await axios.get("https://dummyjson.com/products")
+      setAllData(data.data.products);
+
+   }
+   alldata()
+   
+
+  },[])
+
+
   return (
     <div>
       <Banner/>
@@ -34,49 +53,38 @@ const Home = () => {
       <Container>
          <Heading text="New Arrivals" className='pb-12' />
          <Slider {...settings}>
-        <div>
-           <Product src={ProductImage} title="Product one" price="30"/>
-        </div>
-        <div>
-           <Product src={ProductImage2} title="Product one" price="30"/>
-        </div>
-        <div>
-           <Product src={ProductImage} title="Product one" price="30"/>
-        </div>
-        <div>
-           <Product src={ProductImage2} title="Product one" price="30"/>
-        </div>
-        <div>
-           <Product src={ProductImage} title="Product one" price="30"/>
-        </div>
-       
-        <div>
-           <Product src={ProductImage2} title="Product one" price="30"/>
-        </div>
-       
-        
-        
+       {
+         allData.map(item=>(
+             <div>
+                <Product src={item.thumbnail} title={item.title} price="30"/>
+            </div>
+         ))
+       }
       
     </Slider>
 
-      
-
         <Heading text="Our Bestsellers" className='pb-12' />
         <Flex className='justify-between   pb-[118px]'>
-              <Product src={ProductImage} title="Product one" price="30"/>
-              <Product src={ProductImage2} title="Product two" price="20"/>
-              <Product src={ProductImage} title="Product three" price="50"/>
-              <Product src={ProductImage2} title="Product four" price="100"/>
+              {
+               allData.map((item,index)=>(
+                 (index>=4 && index<8) &&
+                  <Product src={item.thumbnail} title={item.title} price={item.price}/>
+
+               ))
+              }
         </Flex>
 
         <Image className='mb-[128px]' src={Pomotion}/>
 
         <Heading text="Special Offers"/>
         <Flex className='justify-between   pt-12 pb-[140px]'>
-              <Product src={ProductImage} title="Product one" price="30"/>
-              <Product src={ProductImage2} title="Product two" price="20"/>
-              <Product src={ProductImage} title="Product three" price="50"/>
-              <Product src={ProductImage2} title="Product four" price="100"/>
+               {
+               allData.map((item,index)=>(
+                 (index>=8 && index<12) &&
+                  <Product src={item.thumbnail} title={item.title} price={item.price}/>
+
+               ))
+              }
         </Flex>
 
 
