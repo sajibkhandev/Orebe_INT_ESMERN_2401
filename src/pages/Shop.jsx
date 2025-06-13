@@ -41,7 +41,47 @@ const Shop = () => {
         <Flex className='pt-[130px]'>
            <div className='w-3/12 pr-10'>
              <h5 className='text-2xl text-secondary font-dm font-bold pb-9'>Shop by Category</h5>
-            <Category text="Desktop" type="true" type2={category}/>
+            <Category text="Desktop" type="true" />
+               {
+                category &&  <div>
+                  <SubCategory className="pl-10 text-red-500" text="Dell" type="true"/>
+                  <SubCategory className="pl-10 text-red-500" text="Dell" type="true"/>
+                  <SubCategory className="pl-10 text-red-500" text="Dell" type="true"/>
+                  <SubCategory className="pl-10 text-red-500" text="Dell" type="true"/>
+                  <SubCategory className="pl-10 text-red-500" text="Dell" type="true"/>
+                 </div>
+               }
+            <Category text="Moble" type="false" />
+               {
+                category &&  <div>
+                  <SubCategory className="pl-10 text-red-500" text="Dell" type="true"/>
+                  <SubCategory className="pl-10 text-red-500" text="Dell" type="true"/>
+                  <SubCategory className="pl-10 text-red-500" text="Dell" type="true"/>
+                  <SubCategory className="pl-10 text-red-500" text="Dell" type="true"/>
+                  <SubCategory className="pl-10 text-red-500" text="Dell" type="true"/>
+                 </div>
+               }
+            <Category text="Watch" type="true" />
+               {
+                category &&  <div>
+                  <SubCategory className="pl-10 text-red-500" text="Dell" type="true"/>
+                  <SubCategory className="pl-10 text-red-500" text="Dell" type="true"/>
+                  <SubCategory className="pl-10 text-red-500" text="Dell" type="true"/>
+                  <SubCategory className="pl-10 text-red-500" text="Dell" type="true"/>
+                  <SubCategory className="pl-10 text-red-500" text="Dell" type="true"/>
+                 </div>
+               }
+            <Category text="Leptop" type="false" />
+               {
+                category &&  <div>
+                  <SubCategory className="pl-10 text-red-500" text="Dell" type="true"/>
+                  <SubCategory className="pl-10 text-red-500" text="Dell" type="true"/>
+                  <SubCategory className="pl-10 text-red-500" text="Dell" type="true"/>
+                  <SubCategory className="pl-10 text-red-500" text="Dell" type="true"/>
+                  <SubCategory className="pl-10 text-red-500" text="Dell" type="true"/>
+                 </div>
+               }
+            <Category text="Teblet" type="true" />
                {
                 category &&  <div>
                   <SubCategory className="pl-10 text-red-500" text="Dell" type="true"/>
@@ -52,10 +92,7 @@ const Shop = () => {
                  </div>
                }
                
-            <Category text="Phone" type="false"/>
-            <Category text="Watch" type="true"/>
-            <Category text="Leptop" type="false"/>
-            <Category text="Teblet" type="true"/>
+           
            
         
             

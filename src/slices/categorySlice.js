@@ -8,12 +8,7 @@ export const categorySlice = createSlice({
   reducers: {
     categoryFunciton: (state,action) => {
       state.value=action.payload
-     
-      
-   
-      
-      
-    }
+    },
   },
 })
 export const { categoryFunciton } = categorySlice.actions
