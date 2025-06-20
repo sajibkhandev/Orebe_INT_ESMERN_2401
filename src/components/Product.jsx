@@ -27,7 +27,7 @@ const Product = ({src,title,price}) => {
                 <ul className='flex flex-col items-end px-[30px] py-6 gap-y-4'>
                     <li className='text-base text-primary font-dm font-normal'>Add to Wish List <FaHeart className='inline ml-4 text-sm cursor-pointer'/></li>
                     <li className='text-base text-primary font-dm font-normal'>Compare <FaCodeCompare className='inline ml-4 text-sm cursor-pointer'/></li>
-                    <li onClick={handleAddToCart} className='text-base text-primary font-dm font-normal'>Add to Cart <FaShoppingCart className='inline ml-4 text-sm cursor-pointer'/></li>
+                    <li onClick={handleAddToCart} className='text-base text-primary font-dm font-normal cursor-pointer'>Add to Cart <FaShoppingCart className='inline ml-4 text-sm cursor-pointer'/></li>
                 </ul>
             </div>
         </div>
