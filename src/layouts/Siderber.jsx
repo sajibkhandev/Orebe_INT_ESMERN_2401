@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from '../components/Container'
+import Button from '../components/Button'
 import Image from '../components/Image'
 import Flex from '../components/Flex'
 import { FaBarsStaggered, FaUser } from "react-icons/fa6";
@@ -9,12 +10,17 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { ImCross } from 'react-icons/im';
-import { decrement, increment } from '../slices/addtocart';
+import { decrement, increment, removeitem } from '../slices/addtocart';
 
 
 const Siderber = () => {
   let data=useSelector((state)=>state.addtocart.value)
+  
+  
+
   let dispatch=useDispatch()
+
+  let [total,setTotal]=useState(0)
  
   
   let  [showcart,setShowCart]=useState(false)
@@ -31,6 +37,23 @@ const Siderber = () => {
     dispatch(decrement(item))
     
   }
+  let handleCross=(item)=>{
+    dispatch(removeitem(item))
+    
+    
+  }
+
+  useEffect(()=>{
+    let total=0
+    data.map(item=>{
+      total+=item.quantity*item.price;
+    })
+    setTotal(total);
+    
+
+  },[data])
+
+
   return (
     <section className='py-6 bg-[#F5F5F3]'>
         <Container>
@@ -60,16 +83,21 @@ const Siderber = () => {
                     showcart && <div className='w-1/3 h-screen bg-black text-white absolute top-0 right-0 z-10'>
                        <ImCross  onClick={handleAddtocart} className='text-white my-5 mx-8'/>
                        <ul className='flex justify-between py-3 px-8 border-b border-white text-lg font-semibold font-dm pb-4'>
+                        <li className='w-[60px]'>Action</li>
                         <li className='w-[100px]'>Product</li>
                         <li className='w-[80px]'>Price</li>
                         <li>Quantity</li>
                         <li>SubTotal</li>
                        </ul>
-
                        {
-                        data.map(item=>(
-                          <ul className='flex justify-between py-3 px-8 border-b border-white'>
-                            <li className='w-[100px]'>{item.title.substring(0,15)}....</li>
+                        data.length>0 
+                        ?
+                        <>
+                        {
+                           data.map(item=>(
+                          <ul className='flex justify-between items-center py-3 px-8 border-b border-white'>
+                            <li onClick={()=>handleCross(item)} className='w-[60px]'> <ImCross className='text-white text-xs ml-5'/></li>
+                            <li className='w-[100px]'>{item.title.substring(0,18)}....</li>
                             <li className='w-[80px]'>{item.price}$</li>
                             <li className='border border-white py-2 px-4 flex gap-x-4 w-[90px] cursor-pointer'>
                               <span onClick={()=>handleDecrement(item)}>-</span>
@@ -79,9 +107,27 @@ const Siderber = () => {
                             <li className='w-[50px]'>{item.quantity*item.price}$</li>
                           </ul>
                         ))
+                        }
+                        <div className="flex justify-center gap-x-4 mt-10">
+
+                          <Button className='bg-white !text-black hover:!bg-black hover:!text-white' text="View Cart"/>
+                          <Button className='bg-white !text-black hover:!bg-black hover:!text-white' text="Checkout"/>
+                        </div>
+                        
+                        
+                        </>
+                       
+
+
+
+                       
+                         :
+                         <h3 className='text-white text-3xl text-center mt-[200px] font-dm font-bold'>Cart is Empty</h3>
                        }
 
-                       <h3 className='text-2xl text-white font-dm font-bold absolute right-5 bottom-5'>Total: 500 $</h3>
+                      
+
+                       <h3 className='text-2xl text-white font-dm font-bold absolute right-5 bottom-5'>Total:{total}$</h3>
                     </div>
                      
                   }

@@ -40,12 +40,17 @@ export const addtocart = createSlice({
         }
       })
       
-      
-      
-      
     },
+    removeitem: (state,action)=> {
+      state.value.map((item,index)=>{
+        if(item.title==action.payload.title){
+        state.value.splice(index,1)
+        }
+      })
+
+    }
   },
 })
-export const { cartitem,increment,decrement } = addtocart.actions
+export const { cartitem,increment,decrement,removeitem } = addtocart.actions
 
 export default addtocart.reducer
