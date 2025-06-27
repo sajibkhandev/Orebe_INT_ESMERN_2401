@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ImCross } from 'react-icons/im';
 import { decrement, increment, removeitem } from '../slices/addtocart';
 
+import { Link } from 'react-router-dom'
+
 
 const Siderber = () => {
   let data=useSelector((state)=>state.addtocart.value)
@@ -110,15 +112,15 @@ const Siderber = () => {
                         }
                         <div className="flex justify-center gap-x-4 mt-10">
 
-                          <Button className='bg-white !text-black hover:!bg-black hover:!text-white' text="View Cart"/>
-                          <Button className='bg-white !text-black hover:!bg-black hover:!text-white' text="Checkout"/>
+                          <Link to="/cart">
+                                 <Button className='bg-white !text-black hover:!bg-black hover:!text-white hover:!border-white' text="View Cart"/>
+                          </Link>
+                          <Link to='/checkout'>
+                                 <Button className='bg-white !text-black hover:!bg-black hover:!text-white hover:!border-white' text="Checkout"/>
+                          </Link>
                         </div>
                         
-                        
                         </>
-                       
-
-
 
                        
                          :
