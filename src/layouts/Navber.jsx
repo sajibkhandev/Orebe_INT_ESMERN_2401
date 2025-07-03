@@ -29,7 +29,7 @@ const Navber = () => {
                    <Link onClick={()=>handleClick("Shop")} to='/shop'> <List text="Shop"/></Link>
                    <Link onClick={()=>handleClick("About")} to='/about'> <List text="About"/></Link>
                    <Link onClick={()=>handleClick("Contact")} to='/contact'> <List text="Contacts"/></Link>
-                   <Link onClick={()=>handleClick("Journal")} to=''> <List text="Journal"/></Link>
+                   <Link onClick={()=>handleClick("Journal")} to='/journal'> <List text="Journal"/></Link>
                     
                     
                     
