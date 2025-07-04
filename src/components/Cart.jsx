@@ -5,8 +5,9 @@ import { FaHeart, FaShoppingCart } from 'react-icons/fa'
 import { FaCodeCompare } from 'react-icons/fa6'
 import { useDispatch } from 'react-redux'
 import { cartitem } from '../slices/addtocart'
+import { Link } from 'react-router-dom'
 
-const Product = ({src,title,price}) => {
+const  Cart= ({src,title,price}) => {
   let dispatch=useDispatch()
   let handleAddToCart=()=>{
     dispatch(cartitem({
@@ -31,10 +32,12 @@ const Product = ({src,title,price}) => {
                 </ul>
             </div>
         </div>
+       <Link to={`/products/${title}`}>
        <Flex className='justify-between pb-[15px] pt-5'>
           <h4 className='text-xl text-secondary font-dm font-bold '>{title}</h4>
           <p className='text-base text-primary font-dm font-normal '>${price}</p>
        </Flex>
+       </Link>
        <h6 className='text-base text-primary font-dm font-normal'>Black</h6>
 
 
@@ -44,4 +47,4 @@ const Product = ({src,title,price}) => {
   )
 }
 
-export default Product
+export default Cart

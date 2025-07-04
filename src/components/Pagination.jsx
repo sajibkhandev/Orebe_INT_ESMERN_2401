@@ -1,7 +1,7 @@
 import React, { use, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import ReactPaginate from 'react-paginate';
-import Product from './Product'
+import Cart from './Cart'
 import axios from 'axios';
 
 
@@ -13,7 +13,7 @@ function Items({ currentItems }) {
                 {currentItems &&
                 currentItems.map((item) => (
                 <div>
-                    <Product src={item.thumbnail} title={item.title} price={item.price}/>
+                    <Cart src={item.thumbnail} title={item.title} price={item.price}/>
                 </div>
                 ))}
       </div>

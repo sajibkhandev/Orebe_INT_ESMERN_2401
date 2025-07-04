@@ -13,10 +13,14 @@ import { ImCross } from 'react-icons/im';
 import { decrement, increment, removeitem } from '../slices/addtocart';
 
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 
 const Siderber = () => {
   let data=useSelector((state)=>state.addtocart.value)
+  let [allData,setAllData]=useState([])
+  let [search,setSearch]=useState([])
+  let [input,setInput]=useState('')
   
   
 
@@ -56,6 +60,29 @@ const Siderber = () => {
   },[data])
 
 
+  useEffect(()=>{
+   async function alldata(){
+      let data=await axios.get("https://dummyjson.com/products")
+      setAllData(data.data.products);
+
+   }
+   alldata()
+  },[])
+
+  let handleChnage=(e)=>{
+    setInput(e.target.value)
+    // console.log(e.target.value);
+
+    let search=allData.filter(item=>item.title.toLowerCase().includes(e.target.value.toLowerCase()))
+    setSearch(search)
+    
+  }
+
+  let handleRemoveInput=()=>{
+    setInput("")
+
+  }
+
   return (
     <section className='py-6 bg-[#F5F5F3]'>
         <Container>
@@ -68,8 +95,23 @@ const Siderber = () => {
                 </div>
                 <div className='w-6/12'>
                 <div className='relative'>
-                     <input className='py-4 pl-6 pr-16  bg-white w-full placeholder:text-sm placeholder:text-[#C4C4C4]' type="text" placeholder='Search Products'/>
+                     <input value={input} onChange={handleChnage} className='py-4 pl-6 pr-16  bg-white w-full placeholder:text-sm placeholder:text-[#C4C4C4]' type="text" placeholder='Search Products'/>
                      <FiSearch  className='absolute top-1/2 right-[20px] -translate-y-1/2 text-sm'/>
+                    {
+                      search.length>0 &&
+                      input.length>0 &&
+                      
+                       <div className='absolute top-[60px] left-0 bg-white w-full p-[30px] z-10'>
+                      {
+                        
+                        search.map(item=>(
+                          <Link onClick={handleRemoveInput} to='/shop'><p className='py-2'>{item.title}</p></Link>
+                          
+                        ))
+
+                      }
+                     </div>
+                    }
                 </div>
 
                 </div>
@@ -138,6 +180,8 @@ const Siderber = () => {
                 </div>
 
             </Flex>
+
+            
 
         </Container>
     </section>

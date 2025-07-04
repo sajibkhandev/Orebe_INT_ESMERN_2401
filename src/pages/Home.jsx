@@ -4,7 +4,7 @@ import Offer from '../layouts/Offer'
 import Heading from '../components/Heading'
 import Container from '../components/Container'
 import Flex from '../components/Flex'
-import Product from '../components/Product'
+import Cart from '../components/Cart'
 import ProductImage from '../assets/product.png'
 import ProductImage2 from '../assets/product2.png'
 import Pomotion from '../assets/pomotion.png'
@@ -15,6 +15,7 @@ import Slider from "react-slick";
 import NextArrow from '../components/NextArrow'
 import PrevArrow from '../components/PrevArrow'
 import axios from 'axios'
+
 
 
 const Home = () => {
@@ -56,8 +57,9 @@ const Home = () => {
        {
          allData.map(item=>(
              <div>
-                <Product src={item.thumbnail} title={item.title} price="30"/>
+                <Cart src={item.thumbnail} title={item.title} price="30"/>
             </div>
+            
          ))
        }
       
@@ -68,7 +70,7 @@ const Home = () => {
               {
                allData.map((item,index)=>(
                  (index>=4 && index<8) &&
-                  <Product src={item.thumbnail} title={item.title} price={item.price}/>
+                  <Cart src={item.thumbnail} title={item.title} price={item.price}/>
 
                ))
               }
@@ -81,7 +83,7 @@ const Home = () => {
                {
                allData.map((item,index)=>(
                  (index>=8 && index<12) &&
-                  <Product src={item.thumbnail} title={item.title} price={item.price}/>
+                  <Cart src={item.thumbnail} title={item.title} price={item.price}/>
 
                ))
               }
